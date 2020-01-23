@@ -8,18 +8,19 @@ train {
                 "wrk -U -t $THREAD -c $CONNECTIONS -R $THROUGHPUT -d $RUN_TIME -s post.lua $ENDPOINT_URL || true"
             ]}
         ]
+
+        resources {
+            cpu = "500m"
+            memory = "100M"
+        }
     }
 
     parameters {
         ENDPOINT_URL = "https://"
+        POST_BODY = "{}"
         THREAD = "4"
         CONNECTIONS = "16"
         THROUGHPUT = "1000"
         RUN_TIME = "5m"
     }
-
-    secrets = [
-        "DUMMY_SECRET_A",
-        "DUMMY_SECRET_B"
-    ]
 }
